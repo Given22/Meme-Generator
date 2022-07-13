@@ -1,4 +1,5 @@
 import React from "react";
+import {motion} from 'framer-motion'
 
 
 export default function Meme() {
@@ -6,6 +7,7 @@ export default function Meme() {
     top_text: "",
     bottom_text: "",
     img_src: "",
+    show: false
   });
   
   const [memesData, setMemes] = React.useState('')
@@ -19,8 +21,11 @@ export default function Meme() {
   async function getRandomMem() {
     const memes = memesData;
     const randomNumber = Math.floor(Math.random() * memes.length);
-    setImg_src(await memes[randomNumber].url);
-    document.getElementById("Meme").style.display = "flex";
+    setMeme(prevInfo => {
+      return {...prevInfo, 
+        show:  true, 
+        img_src: memes[randomNumber].url
+      }})
   }
   
   function handleChange(event) {
@@ -29,12 +34,6 @@ export default function Meme() {
       return { ...prevInfo, [name]: value}
     })
   }
-  
-  function setImg_src(url) {
-    setMeme(function (prev) {
-      return { ...prev, img_src: url };
-    });
-  }
 
   return (
     <section id="Meme_section">
@@ -42,7 +41,7 @@ export default function Meme() {
         <input
           type="text"
           className="col-5 input_text"
-          placeholder="Top Text"
+          placeholder="first text (top)"
           name="top_text"
           value={meme.top_text}
           onChange={handleChange}
@@ -50,7 +49,7 @@ export default function Meme() {
         <input
           type="text"
           className="col-5 input_text"
-          placeholder="Bottom Text"
+          placeholder="second text (bottom)"
           name="bottom_text"
           value={meme.bottom_text}
           onChange={handleChange}
@@ -59,11 +58,11 @@ export default function Meme() {
           Get a new meme image
         </button>
       </div>
-      <div className="hidden" id="Meme">
-        <p className="Meme_text top">{meme.top_text}</p>
+      {meme.show && <div className="hidden" id="Meme">
+        <motion.p drag className="Meme_text top">{meme.top_text}</motion.p>
         <img src={meme.img_src} alt="Meme" id="Meme_img" />
-        <p className="Meme_text bottom">{meme.bottom_text}</p>
-      </div>
+        <motion.p drag className="Meme_text bottom">{meme.bottom_text}</motion.p>
+      </div>}
     </section>
   );
 }

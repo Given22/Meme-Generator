@@ -68,16 +68,14 @@ body {
 #Meme_img {
   height: 50vh;
   margin: 0 auto;
-  border: solid #d5d4d8 1px;
-}
-
-.hidden {
-  display: none;
+  border: solid #a9a8ad 1px;
 }
 
 #Meme {
   padding: 3% 15%;
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -107,10 +105,10 @@ body {
 }
 
 .bottom {
-  bottom: 5%;
+  bottom: 10%;
 }
 
 .top {
-  top: 5%;
+  top: 10%;
 }
 /*# sourceMappingURL=index.css.map */
