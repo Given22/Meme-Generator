@@ -12,7 +12,7 @@
   
 ## Live
 
-  https://github.com/Given22/Meme-Generator
+  https://meme-generator-damian-s.netlify.app
 
 ## Technologies
   
